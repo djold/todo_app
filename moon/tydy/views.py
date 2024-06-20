@@ -22,3 +22,4 @@ def done_view(request, pk):
     task.status = True
     task.save()
     return redirect('/')
+
