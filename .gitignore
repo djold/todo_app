@@ -1,0 +1,4 @@
+tutu
+.vscode
+**/__pycache__
+moon/db.sqlite3

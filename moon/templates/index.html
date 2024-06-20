@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/create/" method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <input type="submit" value="Добавить задачу">
+
+</form>
+<h1>НЕ ВЫПОЛНЕННЫЕ</h1>
+    {% for t in tasks_not_done %}
+        <h1> {{ t.sagolovok}} </h1>
+        <p> {{ t.text }} </p>
+        {% if t.status %}
+            <span class="done"> Сделано </span>
+            {% else %} 
+            <span class="not_done"> НЕ СДЕЛАНО </span>
+        {% endif %}                    
+        <mark>
+            {{ t.data}}
+        </mark>
+
+    <form action="done/{{ t.id }}/" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Готово ">
+    </form>
+                
+    {% endfor %}
+<h1>
+    Bыполненные
+</h1>
+    {% for t in tasks_done %}
+    <h1> {{ t.sagolovok}} </h1>
+    <p> {{ t.text }} </p>
+    {% if t.status %}
+        <span class="done"> Сделано </span>
+        {% else %} 
+        <span class="not_done"> НЕ СДЕЛАНО </span>
+    {% endif %}                    
+    <mark>
+        {{ t.data}}
+    </mark>
+        
+{% endfor %}
+
+
+
+
+
+
+
+{% endblock  %}
+
+
+
+
+
+
+
+
